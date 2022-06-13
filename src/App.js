@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import DogDisplay from "./components/DogDisplay";
+import Button from "./components/Button";
 
 function App() {
+  const [dog, setDog] = React.useState({});
+  // make fetch request and store response
+  const handleSubmit = async () => {
+    const URL = "https://dog.ceo/api/breeds/image/random";
+
+    let res = await fetch(URL);
+    // Parse JSON response into a javascript object
+    let json = await res.json();
+
+    setDog(json);
+  };
+
+  //This will run on the first render but not on subsquent renders
+  React.useEffect(() => {
+    handleSubmit();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Random Dog Photo Generator</h1>
+      <Button handleSubmitFromApp={handleSubmit} />
+      <DogDisplay dog={dog} />
     </div>
   );
 }
