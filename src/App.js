@@ -4,16 +4,16 @@ import DogDisplay from "./components/DogDisplay";
 import Button from "./components/Button";
 
 function App() {
-  const [dog, setDog] = React.useState({});
+  const [dog, setDog] = React.useState(null);
   // make fetch request and store response
   const handleSubmit = async () => {
     const URL = "https://dog.ceo/api/breeds/image/random";
 
     let res = await fetch(URL);
     // Parse JSON response into a javascript object
-    let json = await res.json();
+    let data = await res.json();
 
-    setDog(json);
+    setDog(data);
   };
 
   //This will run on the first render but not on subsquent renders

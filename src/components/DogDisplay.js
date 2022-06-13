@@ -3,7 +3,7 @@ import React from "react";
 const Dogs = (props) => {
   return (
     <div>
-      <img src={props.message} alt="" />;
+      <img src={props.dog.message} alt="" />;
     </div>
   );
 };
