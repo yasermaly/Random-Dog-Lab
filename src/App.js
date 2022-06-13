@@ -13,13 +13,8 @@ function App() {
     // Parse JSON response into a javascript object
     let data = await res.json();
 
-    setDog(data);
+    setDog(data.message);
   };
-
-  //This will run on the first render but not on subsquent renders
-  React.useEffect(() => {
-    handleSubmit();
-  }, []);
 
   return (
     <div className="App">
